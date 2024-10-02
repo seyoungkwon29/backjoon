@@ -43,7 +43,7 @@ public class QuadTree {
         sb.append(')');
     }
 
-    public static boolean isAllSame(int x, int y, int size) {
+    static boolean isAllSame(int x, int y, int size) {
         int value = arr[x][y]; // 기준값 설정
 
         for (int i = x; i < x + size; i++) {
