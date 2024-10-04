@@ -1,4 +1,4 @@
-package ExponentiationBySquaring;
+package 분할_정복을_이용한_거듭제곱;
 
 import java.io.BufferedReader;
 import java.io.IOException;
