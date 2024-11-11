@@ -10,29 +10,44 @@ public class NumberCard2_10816 {
     static int[] cards;
     static int[] cardsToFind;
 
-    static int searchCards(int index) {
-        int lt = 0;
-        int rt = cards.length - 1;
-        int toFind = cardsToFind[index];
+    static int searchCards(int toFind) {
+        // 찾을 카드의 시작 위치 찾기
+        int lt = lowerBound(toFind);
+        // 찾을 카드의 마지막 위치 찾기
+        int rt = upperBound(toFind);
 
-        while (lt <= rt) {
+        // 값이 존재하지 않는 경우
+        if (lt == rt) return 0;
+
+        // 인덱스 차 == 해당 카드 개수
+        return rt - lt;
+    }
+
+    static int lowerBound(int toFind) {
+        int lt = 0;
+        int rt = cards.length;
+
+        while (lt < rt) {
             int mid = (lt + rt) / 2;
 
-            // 찾아야 할 카드가 중간 카드보다 작을 경우 앞 부분 탐색
-            if (cards[mid] > toFind)
-                rt = mid - 1;
-            // 찾아야 할 카드가 중간 카드보다 클 경우 뒷 부분 탐색
-            else if (cards[mid] < toFind)
-                lt = mid + 1;
-            else {
-                int count = 0;
-                for (int i = lt; i < rt + 1; i++) {
-                    if (cards[i] == toFind) count++;
-                }
-                return count;
-            }
+            if (cards[mid] < toFind) lt = mid + 1;
+            else rt = mid;
         }
-        return 0;
+        return lt;
+    }
+
+    static int upperBound(int toFind) {
+        int lt = 0;
+        int rt = cards.length;
+
+        while (lt < rt) {
+            int mid = (lt + rt) / 2;
+
+            if (cards[mid] <= toFind) lt = mid + 1;
+            else rt = mid;
+        }
+
+        return lt;
     }
 
     public static void main(String[] args) throws IOException {
@@ -63,7 +78,7 @@ public class NumberCard2_10816 {
         // 카드 찾기
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < cardsToFind.length; i++) {
-            sb.append(searchCards(i)).append(" ");
+            sb.append(searchCards(cardsToFind[i])).append(" ");
         }
         System.out.println(sb);
     }
