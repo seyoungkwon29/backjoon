@@ -23,8 +23,7 @@ public class Coin0_11047 {
         }
 
         for (int i = coins.length - 1; i >= 0; i--) {
-            if (coins[i] > k) continue;
-            else {
+            if (coins[i] <= k) {
                 count += k / coins[i];
                 k %= coins[i];
             }
