@@ -22,7 +22,7 @@ public class GCDLCM_2609 {
         int l = Math.max(n, m);
         int s = Math.min(n, m);
 
-        // 유클리드 호재법
+        // 유클리드 호제법
         if (l % s == 0) {
             return s;
         }
