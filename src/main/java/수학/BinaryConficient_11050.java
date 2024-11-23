@@ -18,7 +18,7 @@ public class BinaryConficient_11050 {
 
     static int BinaryConficient(int N, int K) {
         // 파스칼의 법칙 : (N, K) = (N - 1, K) + (N - 1, K - 1)
-        if (N == 0 || N == K)
+        if (K == 0 || N == K)
             return 1;
 
         return BinaryConficient(N - 1, K) + BinaryConficient(N - 1, K - 1);
