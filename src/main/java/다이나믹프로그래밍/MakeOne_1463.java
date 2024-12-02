@@ -1,47 +1,28 @@
 package 다이나믹프로그래밍;
 
 import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class MakeOne_1463 {
 
-    static Integer[] dp;
-
     public static void main(String[] args) throws IOException {
-
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine());
 
-        int N = Integer.parseInt(br.readLine());
+        int count = 0;
 
-        dp = new Integer[N + 1];
-        dp[0] = dp[1] = 0;
-
-        System.out.print(recur(N));
-
-    }
-
-    static int recur(int N) {
-
-        if (dp[N] == null) {
-            // 6으로 나눠지는 경우
-            if (N % 6 == 0) {
-                dp[N] = Math.min(recur(N - 1), Math.min(recur(N / 3), recur(N / 2))) + 1;
-            }
-            // 3으로만 나눠지는 경우
-            else if (N % 3 == 0) {
-                dp[N] = Math.min(recur(N / 3), recur(N - 1)) + 1;
-            }
-            // 2로만 나눠지는 경우
-            else if (N % 2 == 0) {
-                dp[N] = Math.min(recur(N / 2), recur(N - 1)) + 1;
-            }
-            // 2와 3으로 나누어지지 않는 경우
-            else {
-                dp[N] = recur(N - 1) + 1;
-            }
+        while (true) {
+            dp(n);
+            if (n == 1) break;
         }
-        return dp[N];
+
+        System.out.println(count);
     }
 
+    static void dp(int n) {
+        if (n % 2 == 0) n /= 2;
+        if (n % 3 == 0) n /= 3;
+        n -= 1;
+    }
 }
